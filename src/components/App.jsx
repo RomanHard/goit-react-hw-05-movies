@@ -5,8 +5,12 @@ export const App = () => {
   return (
     <div>
       <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
+      <NavLink to="/" end>
+    <span className="NavLink-text">Home</span>
+      </NavLink>
+    <NavLink to="/movies">
+    <span className="NavLink-text">Movies</span>
+  </NavLink> 
       </nav>
       <Routes>
         <Route path="/" element={<div>home</div>} />
