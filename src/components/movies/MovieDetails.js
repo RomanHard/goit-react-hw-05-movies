@@ -6,6 +6,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
 
+
   useEffect(() => {
     fetchMovieDetails(movieId).then(movie => {
       setMovie(movie);
