@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { searchMovies } from '../API/Api.js';
 import MovieList from "../movieList/MovieList";
-import { useHistory } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -11,7 +10,8 @@ const MoviesPage = () => {
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -31,7 +31,7 @@ const MoviesPage = () => {
 
   const handleSearch = newQuery => {
     setQuery(newQuery);
-    history.push({ ...location, search: `query=${newQuery}` });
+    navigate.push({ ...location, search: `query=${newQuery}` });
   };
 
   return (
