@@ -15,7 +15,7 @@ export const App = () => {
         </NavLink>
       </nav>
 
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Movies/*" element={<MoviesPage />}>
           
@@ -24,7 +24,16 @@ export const App = () => {
           <Route path="Reviews" element={<div>Reviews</div>} />
         </Route>
         <Route path="*" element={<div>Not Found</div>} />
+      </Routes> */}
+
+<Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Movies" element={<MoviesPage />} />
+        <Route path="/Movies/:movieId" element={<MovieDetails />} />
+        <Route path="*" element={<div>Not Found</div>} />
       </Routes>
+
     </div>
   );
 };
+
