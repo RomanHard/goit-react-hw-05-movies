@@ -30,6 +30,8 @@ export const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/Movies" element={<MoviesPage />} />
         <Route path="/Movies/:movieId" element={<MovieDetails />} />
+        <Route path="/Cast" element={<div>Cast</div>} />
+        <Route path="/Reviews" element={<div>Reviews</div>} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
 
