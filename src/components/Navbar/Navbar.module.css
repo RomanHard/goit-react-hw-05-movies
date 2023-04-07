@@ -18,5 +18,5 @@
 }
 
 .option:global(.active) {
-  color: red;
+  color: green;
 }
