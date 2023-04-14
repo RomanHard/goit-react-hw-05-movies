@@ -1,5 +1,6 @@
 import { useFetchMovie } from 'hooks/useFetchMovie';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import defaultPoster from './default-poster.jpg';
 
 import styles from './MovieDetailsPage.module.css';
 
@@ -18,11 +19,12 @@ const MovieDetailsPage = () => {
             Go back
           </button>
           <div className={styles.movieInfo}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt=""
-              width="300"
-            />
+  <img
+    src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultPoster} 
+    alt=""
+    width="300"
+    onError={(e) => {e.target.onerror = null; e.target.src=defaultPoster}} 
+  />
             <section>
               <h1>{movie.title}</h1>
               <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
