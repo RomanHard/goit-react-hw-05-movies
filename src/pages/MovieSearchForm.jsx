@@ -1,25 +1,19 @@
-import { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 
-const MovieSearchForm = ({ history }) => {
-  const [keyword, setKeyword] = useState('');
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    history.push(`/movies?keyword=${keyword}`);
-    setKeyword('');
+const MovieSearchForm = ({ searchParams, setSearchParams, onSubmit }) => {
+    const handleSubmit = e => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      onSubmit(form.elements.keyword.value);
+      form.reset();
+    };
+  
+    return (
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="keyword" />
+        <button type="submit">Search</button>
+      </form>
+    );
   };
-
-  const handleChange = e => {
-    setKeyword(e.target.value);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="keyword" value={keyword} onChange={handleChange} />
-      <button type="submit">Search</button>
-    </form>
-  );
-};
-
-export default withRouter(MovieSearchForm);
+  
+  export default MovieSearchForm;
+  

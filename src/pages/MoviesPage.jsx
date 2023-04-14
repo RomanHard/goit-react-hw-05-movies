@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { fetchMovieByQuery } from 'components/shared/services/moviesAPI';
+import MovieSearchForm from './MovieSearchForm';
+import { useSearchParams } from 'react-router-dom';
+
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const keyword = searchParams.get('keyword');
 
@@ -17,21 +21,13 @@ const MoviesPage = () => {
     fetchMovieByQuery(keyword).then(setMovies);
   }, [keyword]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    setSearchParams({ keyword: form.elements.keyword.value });
-    form.reset();
+  const handleSearch = (keyword) => {
+    setSearchParams({ keyword });
   };
-
-  const location = useLocation();
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="keyword" />
-        <button type="submit">Search</button>
-      </form>
+      <MovieSearchForm searchParams={searchParams} setSearchParams={setSearchParams} onSubmit={handleSearch} />
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>
