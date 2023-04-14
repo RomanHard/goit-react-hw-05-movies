@@ -26,7 +26,7 @@ const CastPage = () => {
           src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
           alt=""
           width="200"
-        ></img>
+        />
       )}
       <p>{name}</p>
       <p>{character}</p>
@@ -34,11 +34,13 @@ const CastPage = () => {
   ));
 
   return (
-    <ul>
-      {elements.length === 0
-        ? "We don't have any reviews for this movie"
-        : elements}
-    </ul>
+    <>
+      {elements.length === 0 ? (
+        <p>We don't have any reviews for this movie</p>
+      ) : (
+        <ul>{elements}</ul>
+      )}
+    </>
   );
 };
 
